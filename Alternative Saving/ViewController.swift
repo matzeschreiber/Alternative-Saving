@@ -10,14 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let management: FileManagement = {
+        return FileManagement(filename: "TryMe.txt")
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        management.write("Hello Herby :), how are you?")
+        guard let content = management.read() else {
+            print("Doesn't worked.")
+            return
+        }
+        
+        print(content)
     }
 
 
