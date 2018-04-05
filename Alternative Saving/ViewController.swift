@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         management.write("Hello Herby :), how are you?")
+        management.update("\nThank's I'm fine.")
         guard let content = management.read() else {
             print("Doesn't worked.")
             return

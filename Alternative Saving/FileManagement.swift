@@ -48,6 +48,16 @@ class FileManagement {
         }
     }
     
+    //Updates 'filename'
+    func update(_ content: String) {
+        guard let url = getUrl(filename: filename) else { return }
+        if let updater = try? FileHandle(forUpdating: url) {
+            updater.seekToEndOfFile()
+            updater.write(content.data(using: .utf8)!)
+            updater.closeFile()
+        }
+    }
+    
     private func getUrl(filename name: String) -> URL? {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
